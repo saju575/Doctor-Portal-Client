@@ -1,6 +1,29 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
+	const menuItems = (
+		<>
+			<li>
+				<NavLink to={"/"}>Home</NavLink>
+			</li>
+			<li>
+				<NavLink to={"/about"}>About</NavLink>
+			</li>
+			<li>
+				<NavLink to={"/appointment"}>Appointment</NavLink>
+			</li>
+			<li>
+				<NavLink to={"/reviews"}>Reviews</NavLink>
+			</li>
+			<li>
+				<NavLink to={"/contact"}>Contact</NavLink>
+			</li>
+			<li>
+				<NavLink to={"/login"}>Login</NavLink>
+			</li>
+		</>
+	);
 	return (
 		<div className="container mx-auto">
 			<div className="navbar bg-base-100">
@@ -26,51 +49,13 @@ const Navbar = () => {
 							tabIndex="0"
 							className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
 						>
-							<li>
-								<a>Home</a>
-							</li>
-							<li>
-								<a>About</a>
-							</li>
-							<li>
-								<a>Appointment</a>
-							</li>
-							<li>
-								<a>Reviews</a>
-							</li>
-							<li>
-								<a>Contact Us</a>
-							</li>
-							<li>
-								<a>Login</a>
-							</li>
+							{menuItems}
 						</ul>
 					</div>
-					<a className="cursor-pointer normal-case text-xl">
-						Doctors Portal
-					</a>
+					<a className=" normal-case text-xl">Doctors Portal</a>
 				</div>
-				<div className="navbar-center hidden lg:flex">
-					<ul className="menu menu-horizontal p-0">
-						<li>
-							<a>Home</a>
-						</li>
-						<li>
-							<a>About</a>
-						</li>
-						<li>
-							<a>Appointment</a>
-						</li>
-						<li>
-							<a>Reviews</a>
-						</li>
-						<li>
-							<a>Contact Us</a>
-						</li>
-						<li>
-							<a>Login</a>
-						</li>
-					</ul>
+				<div className=" hidden lg:flex">
+					<ul className="menu menu-horizontal p-0">{menuItems}</ul>
 				</div>
 			</div>
 		</div>
