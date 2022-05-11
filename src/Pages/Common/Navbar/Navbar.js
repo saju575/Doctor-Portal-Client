@@ -4,30 +4,30 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
 	const menuItems = (
 		<>
-			<li>
+			<li className="mx-1">
 				<NavLink to={"/"}>Home</NavLink>
 			</li>
-			<li>
+			<li className="mx-1">
 				<NavLink to={"/about"}>About</NavLink>
 			</li>
-			<li>
+			<li className="mx-1">
 				<NavLink to={"/appointment"}>Appointment</NavLink>
 			</li>
-			<li>
+			<li className="mx-1">
 				<NavLink to={"/reviews"}>Reviews</NavLink>
 			</li>
-			<li>
+			<li className="mx-1">
 				<NavLink to={"/contact"}>Contact</NavLink>
 			</li>
-			<li>
+			<li className="mx-1">
 				<NavLink to={"/login"}>Login</NavLink>
 			</li>
 		</>
 	);
 	return (
 		<div className="container mx-auto">
-			<div className="navbar bg-base-100">
-				<div className="navbar-start">
+			<div className="navbar flex justify-between bg-base-100">
+				<div className="navbar">
 					<div className="dropdown">
 						<label tabIndex="0" className="btn btn-ghost lg:hidden">
 							<svg
@@ -52,7 +52,7 @@ const Navbar = () => {
 							{menuItems}
 						</ul>
 					</div>
-					<a className=" normal-case text-xl">Doctors Portal</a>
+					<a className="ml-1 normal-case text-xl">Doctors Portal</a>
 				</div>
 				<div className=" hidden lg:flex">
 					<ul className="menu menu-horizontal p-0">{menuItems}</ul>
