@@ -1,9 +1,10 @@
 import React from "react";
+import Button from "../../Common/Button/Button";
 
 const Care = () => {
 	return (
-		<div className=" hero min-h-screen">
-			<div className="container mx-auto hero-content  flex-col lg:flex-row gap-16">
+		<section className="pb-[120px] hero min-h-screen ">
+			<div className=" container mx-auto hero-content  flex-col lg:flex-row gap-16">
 				<img
 					src="./assets/images/treatment.png"
 					className="sm:w-3/5 lg:max-w-sm rounded shadow-2xl"
@@ -21,12 +22,10 @@ const Care = () => {
 						here', making it look like readable English. Many
 						desktop publishing packages and web page
 					</p>
-					<button className="btn btn-primary bg-gradient-to-r from-secondary to-primary hover:bg-gradient-to-l hover:border-none border-none text-white">
-						Get Started
-					</button>
+					<Button>get started</Button>
 				</div>
 			</div>
-		</div>
+		</section>
 	);
 };
 

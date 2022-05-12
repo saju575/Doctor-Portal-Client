@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../../Common/Button/Button";
 import "./Banner.css";
 
 const Banner = () => {
@@ -10,14 +11,12 @@ const Banner = () => {
 						<h1 className="text-2xl font-semibold text-gray-800 uppercase dark:text-white lg:text-3xl mb-6">
 							Your New Smile Starts Here
 						</h1>
-						<p className="mt-2 text-gray-600 dark:text-gray-400">
+						<p className="my-4 text-gray-600 dark:text-gray-400">
 							Lorem ipsum dolor sit amet, consectetur adipisicing
 							elit. Porro beatae error laborum ab amet sunt
 							recusandae?
 						</p>
-						<button className=" px-3 py-3 mt-6 text-xs font-medium text-white uppercase transition-colors duration-200 transform bg-gradient-to-r from-secondary to-primary rounded-md lg:w-auto hover:bg-gradient-to-l ">
-							get started
-						</button>
+						<Button>get started</Button>
 					</div>
 				</div>
 
