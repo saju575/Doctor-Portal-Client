@@ -4,10 +4,14 @@ import Button from "../../Common/Button/Button";
 const MakeAppointment = () => {
 	return (
 		<section
-			style={{ background: "url('./assets/images/appointment.png')" }}
+			style={{
+				background: "url('./assets/images/appointment.png') no-repeat",
+				backgroundSize: "cover",
+			}}
+			className="px-2"
 		>
-			<div className="container mx-auto flex justify-center items-center">
-				<div className="flex-1 mt-[-120px]">
+			<div className="container py-10 lg:py-0 mx-auto flex justify-center items-center">
+				<div className="hidden lg:block flex-1 mt-[-120px]">
 					<img src="./assets/images/doctor-small.png" alt="" />
 				</div>
 				<div className="flex-1">
