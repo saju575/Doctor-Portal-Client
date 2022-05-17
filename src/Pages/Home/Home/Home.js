@@ -1,8 +1,9 @@
 import React from "react";
+import Footer from "../../Common/Footer/Footer";
 import Banner from "../Banner.js/Banner";
 import Care from "../Care/Care";
 import ContactForm from "../ContactForm/ContactForm";
-import Footer from "../Footer/Footer";
+
 import Info from "../Info/Info";
 import MakeAppointment from "../MakeAppointment/MakeAppointment";
 import Services from "../Services/Services";
