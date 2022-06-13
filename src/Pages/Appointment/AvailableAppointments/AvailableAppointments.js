@@ -6,7 +6,6 @@ import BookingModal from "../BookingModal/BookingModal";
 import Service from "../Service/Service";
 
 const AvailableAppointments = ({ selectedDay }) => {
-	//const [services, setServices] = useState([]);
 	const [treatment, setTreatment] = useState(null);
 	const formattedDate = format(selectedDay, "PP");
 
@@ -23,11 +22,6 @@ const AvailableAppointments = ({ selectedDay }) => {
 		return <Spinner />;
 	}
 
-	// useEffect(() => {
-	// 	fetch(`http://localhost:5000/available?date=${formattedDate}`)
-	// 		.then((res) => res.json())
-	// 		.then((data) => setServices(data));
-	// }, [formattedDate]);
 	return (
 		<section className="container mx-auto px-2 py-24">
 			<p className="text-xl text-secondary text-center">
