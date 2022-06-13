@@ -1,0 +1,26 @@
+[
+	{
+		"name": "Termaric powder",
+		"img": "https://i.ibb.co/cFMCvZ6/5.png",
+		"price": 70,
+		"quantity": 4,
+		"discription": "Apart from having excellent antiseptic and antibacterial properties, i...",
+		"supplierName": "Raduni"
+	},
+	{
+		"name": "White Rice",
+		"img": "https://i.ibb.co/cFMCvZ6/5.png",
+		"price": 70,
+		"quantity": 4,
+		"discription": "Apart from having excellent antiseptic and antibacterial properties, i...",
+		"supplierName": "Raduni"
+	},
+	{
+		"name": "Fresh oil",
+		"img": "https://i.ibb.co/cFMCvZ6/5.png",
+		"price": 70,
+		"quantity": 4,
+		"discription": "Apart from having excellent antiseptic and antibacterial properties, i...",
+		"supplierName": "Raduni"
+	}
+]

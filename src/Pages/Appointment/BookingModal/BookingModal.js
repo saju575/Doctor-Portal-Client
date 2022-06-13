@@ -1,13 +1,49 @@
 import { format } from "date-fns";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
+import auth from "../../../firebase.init";
 
-const BookingModal = ({ treatment, selectedDay, setTreatment }) => {
-	const { name, slots } = treatment;
+const BookingModal = ({ treatment, selectedDay, setTreatment, refetch }) => {
+	const { _id, name, available } = treatment;
+	const [user, loading, error] = useAuthState(auth);
+	const formattedDate = format(selectedDay, "PP");
 	const handleBooking = (e) => {
 		e.preventDefault();
 		const slot = e.target.slot.value;
-		console.log(slot);
-		setTreatment(null);
+
+		const booking = {
+			treatmentId: _id,
+			treatmentName: name,
+			date: formattedDate,
+			slot,
+			patientName: user.displayName,
+			patientEmail: user.email,
+			phone: e.target.phone.value,
+		};
+		fetch("http://localhost:5000/booking", {
+			method: "POST",
+			headers: {
+				"content-type": "application/json",
+			},
+			body: JSON.stringify(booking),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.success) {
+					toast.success(
+						`Appointment is set, ${formattedDate} at ${slot}`
+					);
+				} else {
+					toast.error(
+						`Already have an appointment on, ${data.booking?.date} at ${data.booking?.slot}`
+					);
+				}
+				console.log(data);
+				refetch();
+				setTreatment(null);
+			});
+		//console.log(booking);
 	};
 	return (
 		<div>
@@ -40,7 +76,7 @@ const BookingModal = ({ treatment, selectedDay, setTreatment }) => {
 							name="slot"
 							className="select select-bordered w-full max-w-xs"
 						>
-							{slots.map((slot, id) => (
+							{available.map((slot, id) => (
 								<option key={id} value={slot}>
 									{slot}
 								</option>
@@ -49,13 +85,15 @@ const BookingModal = ({ treatment, selectedDay, setTreatment }) => {
 						<input
 							name="name"
 							type="text"
-							placeholder="Your Name"
+							disabled
+							value={user?.displayName || ""}
 							className="input input-bordered w-full max-w-xs"
 						/>
 						<input
 							name="email"
 							type="email"
-							placeholder="Email Address"
+							disabled
+							value={user?.email || ""}
 							className="input input-bordered w-full max-w-xs"
 						/>
 						<input
