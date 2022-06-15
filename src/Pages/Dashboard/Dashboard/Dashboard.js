@@ -1,7 +1,16 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Outlet, Link, NavLink } from "react-router-dom";
+import auth from "../../../firebase.init";
+import useAdmin from "../../../hooks/useAdmin";
+import Spinner from "../../Common/Spinner/Spinner";
 
 const Dashboard = () => {
+	const [user] = useAuthState(auth);
+	const [admin, adminLoading] = useAdmin(user);
+	if (adminLoading) {
+		return <Spinner />;
+	}
 	return (
 		<div>
 			<div className="drawer drawer-mobile ">
@@ -32,6 +41,22 @@ const Dashboard = () => {
 								<i className="fa-solid fa-star"></i> My Review
 							</Link>
 						</li>
+						{admin && (
+							<>
+								<li>
+									<Link to={"/dashboard/users"}>
+										<i className="fa-solid fa-user"></i> All
+										users
+									</Link>
+								</li>
+								<li>
+									<Link to={"/dashboard/addDoctor"}>
+										<i className="fa-solid fa-user"></i> Add
+										Doctor
+									</Link>
+								</li>
+							</>
+						)}
 					</ul>
 				</div>
 			</div>

@@ -8,6 +8,7 @@ import auth from "../../../firebase.init";
 import { useForm } from "react-hook-form";
 import Spinner from "../../Common/Spinner/Spinner";
 import { Link, useNavigate } from "react-router-dom";
+import useToken from "../../../hooks/useToken";
 
 const Register = () => {
 	const [signInWithGoogle, gUser, gLoading, gError] =
@@ -23,6 +24,8 @@ const Register = () => {
 
 	//use navigate
 	const navigate = useNavigate();
+
+	const [token] = useToken(user || gUser);
 	//loading
 
 	if (loading || gLoading || updating) {
@@ -36,15 +39,19 @@ const Register = () => {
 			</p>
 		);
 	}
-	if (user || gUser) {
-		console.log(user);
-		console.log(gUser);
+	// if (user || gUser) {
+	// console.log(user);
+	// console.log(gUser);
+
+	// }
+	if (token) {
+		navigate("/");
 	}
 	const onSubmit = async (data) => {
 		await createUserWithEmailAndPassword(data.email, data.password);
 		await updateProfile({ displayName: data.name });
-		console.log(data);
-		navigate("/appointment");
+		//console.log(data);
+		//navigate("/appointment");
 	};
 	return (
 		<div className="flex h-screen justify-center items-center">
