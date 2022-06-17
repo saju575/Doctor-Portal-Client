@@ -7,4 +7,5 @@
 * {
 	/* font-family: 'Libre Franklin', sans-serif; */
 	font-family: "Open Sans", sans-serif;
+	scroll-behavior: smooth;
 }

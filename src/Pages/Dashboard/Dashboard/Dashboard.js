@@ -51,8 +51,14 @@ const Dashboard = () => {
 								</li>
 								<li>
 									<Link to={"/dashboard/addDoctor"}>
-										<i className="fa-solid fa-user"></i> Add
-										Doctor
+										<i className="fa-solid fa-user-doctor"></i>{" "}
+										Add Doctor
+									</Link>
+								</li>
+								<li>
+									<Link to={"/dashboard/manageDoctor"}>
+										<i className="fa-solid fa-user-pen"></i>{" "}
+										Manage Doctors
 									</Link>
 								</li>
 							</>

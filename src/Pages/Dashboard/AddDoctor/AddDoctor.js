@@ -18,7 +18,9 @@ const AddDoctor = () => {
 		isLoading,
 		refetch,
 	} = useQuery("service", () =>
-		fetch("http://localhost:5000/service").then((res) => res.json())
+		fetch("https://doctor-portal-server-575.herokuapp.com/service").then(
+			(res) => res.json()
+		)
 	);
 	//image api key
 	const imageKey = "cb4d65a5c005cc95a5bae38d43e831a1";
@@ -39,16 +41,19 @@ const AddDoctor = () => {
 						speciality: data.speciality,
 						img,
 					};
-					fetch("http://localhost:5000/doctor", {
-						method: "POST",
-						headers: {
-							"content-type": "application/json",
-							authorization: `Bearer ${localStorage.getItem(
-								"accessToken"
-							)}`,
-						},
-						body: JSON.stringify(doctor),
-					})
+					fetch(
+						"https://doctor-portal-server-575.herokuapp.com/doctor",
+						{
+							method: "POST",
+							headers: {
+								"content-type": "application/json",
+								authorization: `Bearer ${localStorage.getItem(
+									"accessToken"
+								)}`,
+							},
+							body: JSON.stringify(doctor),
+						}
+					)
 						.then((res) => res.json())
 						.then((inserted) => {
 							if (inserted.insertedId) {
@@ -68,110 +73,120 @@ const AddDoctor = () => {
 	}
 	return (
 		<div>
-			<h2 className="text-2xl">Add Doctor</h2>
-			<div>
-				<form onSubmit={handleSubmit(onSubmit)}>
-					<div className="form-control w-full max-w-xs">
-						<label className="label">
-							<span className="label-text">Name</span>
-						</label>
-						<input
-							{...register("name", {
-								required: {
-									value: true,
-									message: "*Name is required",
-								},
-							})}
-							type="text"
-							placeholder="Your Name"
-							className="input input-bordered rounded w-full max-w-xs"
-						/>
-						<label className="label">
-							{errors.name?.type === "required" && (
-								<span className="label-text-alt text-red-500">
-									{errors.name.message}
-								</span>
-							)}
-						</label>
+			<div className="bg-[#F1F5F9] min-h-screen ">
+				<div className="p-7 sm:p-12">
+					<div className="mb-8">
+						<h2 className="text-2xl">Add Doctor</h2>
 					</div>
-					<div className="form-control w-full max-w-xs">
-						<label className="label">
-							<span className="label-text">Email</span>
-						</label>
-						<input
-							{...register("email", {
-								required: {
-									value: true,
-									message: "*Email is required",
-								},
-								pattern: {
-									value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-									message: "*Provide a valid email",
-								},
-							})}
-							type="email"
-							placeholder="Your Email"
-							className="input input-bordered rounded w-full max-w-xs"
-						/>
-						<label className="label">
-							{errors.email?.type === "required" && (
-								<span className="label-text-alt text-red-500">
-									{errors.email.message}
-								</span>
-							)}
-							{errors.email?.type === "pattern" && (
-								<span className="label-text-alt text-red-500">
-									{errors.email.message}
-								</span>
-							)}
-						</label>
-					</div>
-					<div className="form-control w-full max-w-xs">
-						<label className="label">
-							<span className="label-text">Speciality</span>
-						</label>
-						<select
-							{...register("speciality")}
-							className="select w-full max-w-xs input-bordered rounded"
-						>
-							{services.map((service) => (
-								<option key={service._id} value={service.name}>
-									{service.name}
-								</option>
-							))}
-						</select>
-					</div>
-					<input />
+					<div className="flex items-center justify-center">
+						<form onSubmit={handleSubmit(onSubmit)}>
+							<div className="form-control w-full max-w-xs">
+								<label className="label">
+									<span className="label-text">Name</span>
+								</label>
+								<input
+									{...register("name", {
+										required: {
+											value: true,
+											message: "*Name is required",
+										},
+									})}
+									type="text"
+									placeholder="Doctor Name"
+									className="input input-bordered rounded w-full max-w-xs"
+								/>
+								<label className="label">
+									{errors.name?.type === "required" && (
+										<span className="label-text-alt text-red-500">
+											{errors.name.message}
+										</span>
+									)}
+								</label>
+							</div>
+							<div className="form-control w-full max-w-xs">
+								<label className="label">
+									<span className="label-text">Email</span>
+								</label>
+								<input
+									{...register("email", {
+										required: {
+											value: true,
+											message: "*Email is required",
+										},
+										pattern: {
+											value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+											message: "*Provide a valid email",
+										},
+									})}
+									type="email"
+									placeholder="Doctor Email"
+									className="input input-bordered rounded w-full max-w-xs"
+								/>
+								<label className="label">
+									{errors.email?.type === "required" && (
+										<span className="label-text-alt text-red-500">
+											{errors.email.message}
+										</span>
+									)}
+									{errors.email?.type === "pattern" && (
+										<span className="label-text-alt text-red-500">
+											{errors.email.message}
+										</span>
+									)}
+								</label>
+							</div>
+							<div className="form-control w-full max-w-xs">
+								<label className="label">
+									<span className="label-text">
+										Speciality
+									</span>
+								</label>
+								<select
+									{...register("speciality")}
+									className="select select-bordered w-full max-w-xs rounded"
+								>
+									{services.map((service) => (
+										<option
+											key={service._id}
+											value={service.name}
+										>
+											{service.name}
+										</option>
+									))}
+								</select>
+							</div>
 
-					<div className="form-control w-full max-w-xs">
-						<label className="label">
-							<span className="label-text">Photo</span>
-						</label>
-						<input
-							{...register("image", {
-								required: {
-									value: true,
-									message: "*Image is required",
-								},
-							})}
-							type="file"
-							className="input input-bordered rounded w-full max-w-xs"
-						/>
-						<label className="label">
-							{errors.image?.type === "required" && (
-								<span className="label-text-alt text-red-500">
-									{errors.image.message}
-								</span>
-							)}
-						</label>
-					</div>
+							<div className="form-control w-full max-w-xs">
+								<label className="label">
+									<span className="label-text">Photo</span>
+								</label>
+								<input
+									{...register("image", {
+										required: {
+											value: true,
+											message: "*Image is required",
+										},
+									})}
+									type="file"
+									className="input input-bordered rounded w-full max-w-xs"
+								/>
+								<label className="label">
+									{errors.image?.type === "required" && (
+										<span className="label-text-alt text-red-500">
+											{errors.image.message}
+										</span>
+									)}
+								</label>
+							</div>
 
-					<input
-						className="btn w-full max-w-xs rounded"
-						type="submit"
-						value={"ADD"}
-					/>
-				</form>
+							<input
+								className="btn w-full max-w-xs rounded"
+								type="submit"
+								value={"ADD"}
+							/>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
